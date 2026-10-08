@@ -1,0 +1,588 @@
+@model MHAWebDesign.Models.ContactViewModel
+
+@{
+    ViewData["Title"] =
+        "Start a Web or Software Project | M.H.A";
+
+    ViewData["Description"] =
+        "Start a website, e-commerce, business system or custom software project with M.H.A. Tell us what you are trying to build or improve.";
+}
+
+
+<!-- =========================================================
+     CONTACT HERO
+========================================================= -->
+
+<section class="contact-hero">
+
+    <div class="contact-grid"></div>
+
+    <div class="container">
+
+        <div class="section-topline">
+
+            <span>
+                M.H.A / START A PROJECT
+            </span>
+
+            <span>
+                LET'S TALK
+            </span>
+
+        </div>
+
+
+        <div class="contact-hero-layout">
+
+            <div class="contact-hero-heading">
+
+                <h1>
+                    TELL US
+                    <span>WHAT YOU'RE</span>
+                    TRYING TO BUILD.
+                </h1>
+
+            </div>
+
+
+            <div class="contact-hero-copy">
+
+                <p>
+                    Whether you need a website, e-commerce platform,
+                    business system or custom software product,
+                    tell us what you are trying to achieve.
+                </p>
+
+                <p>
+                    The more context you provide, the better we can
+                    understand the project and recommend the right
+                    next step.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT FORM
+========================================================= -->
+
+<section class="project-contact">
+
+    <div class="container">
+
+        <div class="project-contact-layout">
+
+
+            <!-- LEFT -->
+
+            <div class="project-contact-intro reveal">
+
+                <span class="contact-section-label">
+                    01 / PROJECT DETAILS
+                </span>
+
+
+                <h2>
+                    START WITH
+                    <span>THE PROBLEM.</span>
+                </h2>
+
+
+                <p>
+                    You don't need to know the technical solution yet.
+                    Tell us about the business, the challenge and what
+                    you would like the finished product to accomplish.
+                </p>
+
+
+                <div class="contact-expectations">
+
+                    <div>
+
+                        <span>
+                            01
+                        </span>
+
+                        <p>
+                            Tell us what you need.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            02
+                        </span>
+
+                        <p>
+                            We'll review the requirements.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            03
+                        </span>
+
+                        <p>
+                            We discuss the right approach.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="project-form-wrap reveal">
+
+                @if (TempData["ContactSuccess"] is not null)
+                {
+                    <div class="contact-success-message">
+                        @TempData["ContactSuccess"]
+                    </div>
+                }
+
+
+                <form class="project-form"
+                      method="post"
+                      asp-controller="Home"
+                      asp-action="Contact">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="contact-validation-summary">
+                    </div>
+
+
+                    <!-- NAME + EMAIL -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label asp-for="Name">
+                                NAME
+                            </label>
+
+                            <input asp-for="Name"
+                                   placeholder="Your name" />
+
+                            <span asp-validation-for="Name"
+                                  class="field-validation-error">
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label asp-for="Email">
+                                EMAIL
+                            </label>
+
+                            <input asp-for="Email"
+                                   placeholder="you@example.com" />
+
+                            <span asp-validation-for="Email"
+                                  class="field-validation-error">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUSINESS + PHONE -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label asp-for="Business">
+                                BUSINESS / COMPANY
+                            </label>
+
+                            <input asp-for="Business"
+                                   placeholder="Business name" />
+
+                            <span asp-validation-for="Business"
+                                  class="field-validation-error">
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label asp-for="Phone">
+                                PHONE
+                            </label>
+
+                            <input asp-for="Phone"
+                                   placeholder="+27" />
+
+                            <span asp-validation-for="Phone"
+                                  class="field-validation-error">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT TYPE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            WHAT DO YOU NEED?
+                        </label>
+
+
+                        <div class="project-options">
+
+                            <label class="project-option">
+
+                                <input asp-for="ProjectType"
+                                       type="radio"
+                                       value="Website" />
+
+                                <span>
+                                    Website
+                                </span>
+
+                            </label>
+
+
+                            <label class="project-option">
+
+                                <input asp-for="ProjectType"
+                                       type="radio"
+                                       value="E-Commerce" />
+
+                                <span>
+                                    E-Commerce
+                                </span>
+
+                            </label>
+
+
+                            <label class="project-option">
+
+                                <input asp-for="ProjectType"
+                                       type="radio"
+                                       value="Business System" />
+
+                                <span>
+                                    Business System
+                                </span>
+
+                            </label>
+
+
+                            <label class="project-option">
+
+                                <input asp-for="ProjectType"
+                                       type="radio"
+                                       value="Custom Software" />
+
+                                <span>
+                                    Custom Software
+                                </span>
+
+                            </label>
+
+
+                            <label class="project-option">
+
+                                <input asp-for="ProjectType"
+                                       type="radio"
+                                       value="Other" />
+
+                                <span>
+                                    Other
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <span asp-validation-for="ProjectType"
+                              class="field-validation-error">
+                        </span>
+
+                    </div>
+
+
+                    <!-- BUDGET -->
+
+                    <div class="form-group">
+
+                        <label asp-for="Budget">
+                            PROJECT BUDGET
+                        </label>
+
+
+                        <select asp-for="Budget">
+
+                            <option value="">
+                                Select a budget range
+                            </option>
+
+                            <option value="R5,000 - R10,000">
+                                R5,000 — R10,000
+                            </option>
+
+                            <option value="R10,000 - R20,000">
+                                R10,000 — R20,000
+                            </option>
+
+                            <option value="R20,000 - R40,000">
+                                R20,000 — R40,000
+                            </option>
+
+                            <option value="R40,000+">
+                                R40,000+
+                            </option>
+
+                            <option value="Not sure">
+                                Not sure yet
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TIMELINE -->
+
+                    <div class="form-group">
+
+                        <label asp-for="Timeline">
+                            TARGET TIMELINE
+                        </label>
+
+
+                        <select asp-for="Timeline">
+
+                            <option value="">
+                                Select a timeline
+                            </option>
+
+                            <option value="As soon as possible">
+                                As soon as possible
+                            </option>
+
+                            <option value="2 - 4 weeks">
+                                2 — 4 weeks
+                            </option>
+
+                            <option value="1 - 2 months">
+                                1 — 2 months
+                            </option>
+
+                            <option value="2 - 4 months">
+                                2 — 4 months
+                            </option>
+
+                            <option value="Flexible">
+                                Flexible
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <div class="form-group">
+
+                        <label asp-for="Message">
+                            TELL US ABOUT THE PROJECT
+                        </label>
+
+
+                        <textarea asp-for="Message"
+                                  rows="7"
+                                  placeholder="What are you trying to build or improve? What problem are you trying to solve?"></textarea>
+
+
+                        <span asp-validation-for="Message"
+                              class="field-validation-error">
+                        </span>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="mha-button mha-button-primary contact-submit">
+
+                        Send Project Enquiry
+
+                        <span>
+                            ↗
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DIRECT CONTACT
+========================================================= -->
+
+<section class="direct-contact">
+
+    <div class="container">
+
+
+        <div class="section-topline">
+
+            <span>
+                02 / CONTACT
+            </span>
+
+            <span>
+                OTHER WAYS TO REACH US
+            </span>
+
+        </div>
+
+
+        <div class="direct-contact-layout reveal">
+
+
+            <div>
+
+                <h2>
+                    PREFER TO
+                    <span>CONTACT US</span>
+                    DIRECTLY?
+                </h2>
+
+            </div>
+
+
+            <div class="direct-contact-details">
+
+
+                <!-- WHATSAPP -->
+
+                <div>
+
+                    <span>
+                        WHATSAPP
+                    </span>
+
+                    <a href="https://wa.me/27686983487?text=Hi%20M.H.A%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Start a WhatsApp chat ↗
+
+                    </a>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div>
+
+                    <span>
+                        PHONE
+                    </span>
+
+                    <a href="tel:+27686983487">
+                        +27 68 698 3487
+                    </a>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div>
+
+                    <span>
+                        EMAIL
+                    </span>
+
+                    <a href="mailto:mhasoftwaredev@gmail.com">
+                        mhasoftwaredev@gmail.com
+                    </a>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div>
+
+                    <span>
+                        LOCATION
+                    </span>
+
+                    <p>
+                        South Africa
+                    </p>
+
+                </div>
+
+
+                <!-- PROJECTS -->
+
+                <div>
+
+                    <span>
+                        PROJECTS
+                    </span>
+
+                    <p>
+                        Websites · Software · E-Commerce · Business Systems
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -1,0 +1,506 @@
+﻿@{
+    const string siteUrl = "https://mhadigital.co.za";
+
+    var pageTitle =
+        ViewData["Title"] as string
+        ?? "M.H.A | Web & Software Development";
+
+    var pageDescription =
+        ViewData["Description"] as string
+        ?? "M.H.A builds professional websites, custom software, e-commerce platforms and business systems for ambitious businesses.";
+
+    var pageRobots =
+        ViewData["Robots"] as string
+        ?? "index, follow";
+
+    var pageImage =
+        ViewData["OgImage"] as string
+        ?? "/images/mha-social-preview.png";
+
+    var requestPath =
+        Context.Request.Path.HasValue
+            ? Context.Request.Path.Value!
+            : "/";
+
+    var canonicalUrl =
+        $"{siteUrl}{requestPath}";
+
+    var absoluteImageUrl =
+        pageImage.StartsWith(
+            "http",
+            StringComparison.OrdinalIgnoreCase
+        )
+            ? pageImage
+            : $"{siteUrl}{(pageImage.StartsWith("/") ? "" : "/")}{pageImage}";
+}
+
+<!DOCTYPE html>
+<html lang="en-ZA">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@pageTitle</title>
+
+    <meta name="description"
+          content="@pageDescription" />
+
+    <meta name="robots"
+          content="@pageRobots" />
+
+    <meta name="theme-color"
+          content="#080808" />
+
+    <meta name="author"
+          content="M.H.A Digital Studio" />
+
+
+    <!-- =====================================================
+         CANONICAL
+    ====================================================== -->
+
+    <link rel="canonical"
+          href="@canonicalUrl" />
+
+
+    <!-- =====================================================
+         FAVICONS
+    ====================================================== -->
+
+    <link rel="icon"
+          href="/favicon.ico"
+          sizes="any" />
+
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon/favicon-32x32.png" />
+
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon/favicon-16x16.png" />
+
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/favicon/apple-touch-icon.png" />
+
+
+    <!-- =====================================================
+         OPEN GRAPH
+    ====================================================== -->
+
+    <meta property="og:type"
+          content="website" />
+
+    <meta property="og:site_name"
+          content="M.H.A Digital Studio" />
+
+    <meta property="og:locale"
+          content="en_ZA" />
+
+    <meta property="og:title"
+          content="@pageTitle" />
+
+    <meta property="og:description"
+          content="@pageDescription" />
+
+    <meta property="og:url"
+          content="@canonicalUrl" />
+
+    <meta property="og:image"
+          content="@absoluteImageUrl" />
+
+    <meta property="og:image:alt"
+          content="M.H.A Digital Studio" />
+
+
+    <!-- =====================================================
+         TWITTER / SOCIAL
+    ====================================================== -->
+
+    <meta name="twitter:card"
+          content="summary_large_image" />
+
+    <meta name="twitter:title"
+          content="@pageTitle" />
+
+    <meta name="twitter:description"
+          content="@pageDescription" />
+
+    <meta name="twitter:image"
+          content="@absoluteImageUrl" />
+
+
+    <!-- =====================================================
+         STYLES
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         HEADER / NAVIGATION
+    ========================================================== -->
+
+    <header class="mha-header">
+
+        <nav class="navbar navbar-expand-lg mha-navbar">
+
+            <div class="container">
+
+                <!-- BRAND -->
+
+                <a class="navbar-brand mha-logo"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    M.H.A
+
+                </a>
+
+
+                <!-- MOBILE MENU BUTTON -->
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavigation"
+                        aria-controls="mainNavigation"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+
+                <!-- NAVIGATION -->
+
+                <div class="collapse navbar-collapse"
+                     id="mainNavigation">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Home
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Services">
+
+                                Services
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Portfolio">
+
+                                Work
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="About">
+
+                                About
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link nav-contact"
+                               asp-controller="Home"
+                               asp-action="Contact">
+
+                                Start a Project
+
+                                <span>↗</span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         PAGE CONTENT
+    ========================================================== -->
+
+    <main>
+
+        @RenderBody()
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="mha-footer">
+
+        <div class="container">
+
+
+            <div class="footer-main">
+
+                <!-- BRAND -->
+
+                <div class="footer-brand">
+
+                    <a class="footer-logo"
+                       asp-controller="Home"
+                       asp-action="Index">
+
+                        M.H.A
+
+                    </a>
+
+                    <p>
+
+                        Digital products, websites and software
+                        built around real business problems.
+
+                    </p>
+
+                    <div class="footer-capabilities">
+
+                        <span>WEB</span>
+                        <span>SOFTWARE</span>
+                        <span>E-COMMERCE</span>
+                        <span>DIGITAL</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NAVIGATION -->
+
+                <div class="footer-column">
+
+                    <div class="footer-heading">
+                        COMPANY
+                    </div>
+
+                    <a asp-controller="Home"
+                       asp-action="Index">
+
+                        Home
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="Services">
+
+                        Services
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="Portfolio">
+
+                        Work
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="About">
+
+                        About
+
+                    </a>
+
+                </div>
+
+
+                <!-- SERVICES -->
+
+                <div class="footer-column">
+
+                    <div class="footer-heading">
+                        CAPABILITIES
+                    </div>
+
+                    <a asp-controller="Home"
+                       asp-action="Services"
+                       asp-fragment="web-development">
+
+                        Web Development
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="Services"
+                       asp-fragment="software-development">
+
+                        Software Development
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="Services"
+                       asp-fragment="ecommerce">
+
+                        E-Commerce
+
+                    </a>
+
+                    <a asp-controller="Home"
+                       asp-action="Services"
+                       asp-fragment="business-systems">
+
+                        Business Systems
+
+                    </a>
+
+                </div>
+
+
+                <!-- CTA -->
+
+                <div class="footer-column footer-project">
+
+                    <div class="footer-heading">
+                        HAVE A PROJECT?
+                    </div>
+
+                    <p>
+
+                        Tell us what you're trying to build,
+                        improve or solve.
+
+                    </p>
+
+                    <a class="footer-project-link"
+                       asp-controller="Home"
+                       asp-action="Contact">
+
+                        Start a Conversation
+
+                        <span>↗</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                <div>
+
+                    © @DateTime.Now.Year M.H.A
+
+                </div>
+
+
+                <div class="footer-bottom-center">
+
+                    WEB · SOFTWARE · DIGITAL
+
+                </div>
+
+
+                <div>
+
+                    BUILT WITH PURPOSE.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true" defer></script>
+
+
+    @await RenderSectionAsync(
+        "Scripts",
+        required: false
+    )
+
+<!-- FLOATING WHATSAPP CONTACT -->
+
+<a href="https://wa.me/27686983487?text=Hi%20M.H.A%2C%20I%27d%20like%20to%20discuss%20a%20project."
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat with M.H.A on WhatsApp">
+
+    <span class="whatsapp-icon">
+        WA
+    </span>
+
+    <span class="whatsapp-text">
+        WhatsApp
+    </span>
+
+</a>
+</body>
+
+</html>
